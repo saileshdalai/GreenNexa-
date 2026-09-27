@@ -1,0 +1,96 @@
+.pageHero {
+  background: linear-gradient(135deg, #f6faf7, #e8f5ec);
+  padding: var(--space-16) 0 var(--space-12);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.featureCard {
+  background: var(--clr-surface);
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+.featureCard:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--clr-primary);
+  transform: translateY(-3px);
+}
+
+.featureCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.featureIcon {
+  font-size: 2rem;
+  width: 52px;
+  height: 52px;
+  background: var(--clr-primary-light);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featureCategory {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--clr-primary);
+  background: var(--clr-primary-light);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+.featureTitle {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--clr-text-primary);
+}
+
+.featureDesc {
+  font-size: var(--text-sm);
+  color: var(--clr-text-secondary);
+  line-height: 1.75;
+  flex: 1;
+}
+
+.featureTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--clr-border-light);
+}
+
+.tag {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--clr-text-muted);
+  background: var(--clr-surface-2);
+  border: 1px solid var(--clr-border-light);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+@media (max-width: 1024px) {
+  .featuresGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .featuresGrid { grid-template-columns: 1fr; }
+}

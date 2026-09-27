@@ -1,0 +1,296 @@
+.pageHero {
+  background: linear-gradient(135deg, #f6faf7, #e8f5ec);
+  padding: var(--space-16) 0 var(--space-12);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.cycleBox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  background: var(--clr-surface);
+  border: 1.5px solid var(--clr-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  box-shadow: var(--shadow-sm);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.cycleIcon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.cycleBox strong {
+  display: block;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--clr-primary);
+  margin-bottom: var(--space-2);
+}
+
+.cycleBox p {
+  font-size: var(--text-sm);
+  color: var(--clr-text-secondary);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* Steps */
+.stepsContainer {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.step {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.stepLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.stepNumber {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--clr-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+  font-weight: 800;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.stepLine {
+  width: 2px;
+  flex: 1;
+  background: var(--clr-border);
+  margin: var(--space-2) 0;
+  min-height: 32px;
+}
+
+.stepRight {
+  padding-bottom: var(--space-8);
+  flex: 1;
+}
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.stepIcon {
+  font-size: 1.5rem;
+}
+
+.stepTitle {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--clr-text-primary);
+}
+
+.stepDesc {
+  font-size: var(--text-base);
+  color: var(--clr-text-secondary);
+  line-height: 1.75;
+  margin-bottom: var(--space-3);
+}
+
+.stepDetail {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  background: var(--clr-surface-2);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--clr-text-secondary);
+  line-height: 1.6;
+}
+
+.detailIcon {
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .step { gap: var(--space-4); }
+  .stepNumber { width: 40px; height: 40px; font-size: var(--text-xs); }
+}
+
+/* Dual Ingestion Paths */
+.pathsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.pathCard {
+  background: var(--clr-surface);
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  transition: all var(--transition-normal);
+}
+
+.pathCard:hover {
+  border-color: var(--clr-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.pathBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  align-self: flex-start;
+}
+
+.pathFlow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background: var(--clr-surface-2);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  font-family: monospace;
+  font-size: var(--text-xs);
+  color: var(--clr-text-primary);
+  line-height: 1.6;
+}
+
+/* Water Spike Story Walkthrough */
+.storyContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.storyStep {
+  display: flex;
+  gap: var(--space-5);
+}
+
+.storyLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.storyBadge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--clr-primary-light);
+  border: 2px solid var(--clr-primary);
+  color: var(--clr-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.storyLine {
+  width: 2px;
+  flex: 1;
+  background: var(--clr-border);
+  margin: var(--space-2) 0;
+  min-height: 28px;
+}
+
+.storyRight {
+  padding-bottom: var(--space-6);
+  flex: 1;
+}
+
+.storyHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-1);
+}
+
+.storyTitle {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--clr-text-primary);
+}
+
+.storyDesc {
+  font-size: var(--text-sm);
+  color: var(--clr-text-secondary);
+  line-height: 1.6;
+}
+
+/* Tech Stack Grid */
+.techGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.techCard {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+}
+
+.techCategory {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--clr-primary);
+  margin-bottom: var(--space-2);
+}
+
+.techTitle {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--clr-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.techDesc {
+  font-size: var(--text-xs);
+  color: var(--clr-text-secondary);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .pathsGrid { grid-template-columns: 1fr; }
+  .techGrid { grid-template-columns: 1fr; }
+}

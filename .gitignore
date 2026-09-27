@@ -1,0 +1,83 @@
+# =============================================================================
+# GreenNexa Project Root .gitignore
+# =============================================================================
+
+# Virtual Environments
+.venv/
+venv/
+venv_new/
+backend/venv/
+*/.venv/
+*/venv/
+env/
+ENV/
+
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Environment Variables & Secrets (Exclude all .env files except .env.example)
+.env
+.env.*
+*.env
+backend/.env
+frontend/.env*
+!.env.example
+!*.env.example
+!**/.env.example
+
+# Local SQLite & Databases
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.sqlite-journal
+
+# Python Bytecode & Caches
+__pycache__/
+*/__pycache__/
+*/**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest & Testing Artifacts
+.pytest_cache/
+*/.pytest_cache/
+*/**/.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.cache/
+
+# ML Model Registry Cache (Dynamically generated models)
+backend/models/registry/
+models/registry/
+*.joblib
+
+# Logs, Temporary & Scratch Folders
+logs/
+*/logs/
+*.log
+scratch/
+*/scratch/
+temp/
+*/temp/
+tmp/
+*/tmp/
+
+# IDE & Editor Configurations
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+
+# Frontend Build Artifacts
+frontend/.next/
+frontend/out/
+frontend/build/
+*.tsbuildinfo
+
+# Database backup files
+*.db.bak

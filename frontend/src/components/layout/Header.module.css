@@ -1,0 +1,479 @@
+/* Header.module.css */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--clr-header-bg, rgba(246, 250, 247, 0.92));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--clr-border-light);
+  transition: box-shadow var(--transition-normal), background var(--transition-normal);
+}
+
+.header.scrolled {
+  box-shadow: var(--shadow-md);
+  background: var(--clr-header-scrolled-bg, rgba(246, 250, 247, 0.98));
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  height: var(--header-height);
+}
+
+.logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex: 1;
+  margin-left: var(--space-4);
+}
+
+.navLink {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--clr-text-secondary);
+  transition: color var(--transition-fast), background var(--transition-fast);
+  white-space: nowrap;
+}
+
+.navLink:hover {
+  color: var(--clr-primary);
+  background: var(--clr-primary-light);
+}
+
+.loginBtn {
+  flex-shrink: 0;
+  font-size: var(--text-sm) !important;
+  padding: var(--space-2) var(--space-5) !important;
+}
+
+/* ── Hamburger ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+  margin-left: auto;
+}
+
+.hamburger:hover {
+  background: var(--clr-primary-light);
+}
+
+.bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--clr-text-primary);
+  border-radius: 2px;
+  transition: transform var(--transition-normal), opacity var(--transition-normal);
+}
+
+.barOpen1 { transform: translateY(7px) rotate(45deg); }
+.barOpen2 { opacity: 0; }
+.barOpen3 { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── Mobile Menu ── */
+.mobileMenu {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4) var(--space-4) var(--space-5);
+  border-top: 1px solid var(--clr-border);
+  background: var(--clr-surface);
+  gap: var(--space-1);
+  animation: slideDown 200ms ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mobileLink {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--clr-text-secondary);
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.mobileLink:hover {
+  color: var(--clr-primary);
+  background: var(--clr-primary-light);
+}
+
+.mobileLoginBtn {
+  margin-top: var(--space-3);
+  text-align: center;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .desktopNav,
+  .loginBtn {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* ── Super Admin Switcher ── */
+.superAdminSwitcher {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  background: var(--clr-surface-2);
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--clr-border);
+}
+
+.orgSelect {
+  border: none;
+  background: transparent;
+  font-size: 12px;
+  fontWeight: 600;
+  color: var(--clr-text-primary);
+  outline: none;
+  cursor: pointer;
+}
+
+/* ── Simulated Date Pill ── */
+.simulatedDatePill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 8px;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  background-color: rgba(6, 78, 59, 0.3);
+  color: #34d399;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+/* ── Dashboard "..." Menu Container & Button ── */
+.moreMenuContainer {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.moreMenuBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 8px;
+  border: 1px solid var(--clr-border);
+  background: var(--clr-surface-2);
+  color: var(--clr-text-primary);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  outline: none;
+}
+
+.moreMenuBtn:hover,
+.moreMenuBtn[aria-expanded="true"] {
+  background: var(--clr-surface);
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.15);
+}
+
+.moreMenuBtn:focus-visible {
+  outline: 2px solid var(--clr-primary);
+  outline-offset: 2px;
+}
+
+.moreMenuBadgeDot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ef4444;
+  border: 1.5px solid var(--clr-surface-2);
+}
+
+/* ── Dropdown Menu (Single list, no dividers, no sections, no headers) ── */
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 280px;
+  max-width: calc(100vw - 24px);
+  max-height: min(520px, calc(100vh - 90px));
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: 12px;
+  box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.22), 0 6px 12px -2px rgba(0, 0, 0, 0.1);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 1200;
+  animation: menuDrop 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top right;
+  scrollbar-width: thin;
+  scrollbar-color: var(--clr-border) transparent;
+}
+
+@keyframes menuDrop {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ── Single Menu Items ── */
+.menuItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--clr-text-primary);
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  text-align: left;
+  outline: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.menuItem:hover,
+.menuItem:focus-visible {
+  background: var(--clr-surface-2);
+  color: var(--clr-primary);
+}
+
+.menuItem:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.menuItemLeft {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.menuItemText {
+  font-size: 13px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Icons & Status Badges ── */
+.itemIconGreen {
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+.itemIconIndigo {
+  color: #818cf8;
+  flex-shrink: 0;
+}
+
+.itemIconRed {
+  color: #ef4444;
+  flex-shrink: 0;
+}
+
+.itemIconMuted {
+  color: var(--clr-text-muted);
+  flex-shrink: 0;
+}
+
+.chevronIcon {
+  color: var(--clr-text-muted);
+  flex-shrink: 0;
+}
+
+.statusPill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 10px;
+  border: 1px solid var(--clr-border);
+  background: var(--clr-surface-2);
+  color: var(--clr-text-secondary);
+  flex-shrink: 0;
+}
+
+.statusPillActive {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.statusPillPresentation {
+  background: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.unreadPill {
+  font-size: 10px;
+  font-weight: 700;
+  background: #ef4444;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 1px 6px;
+  min-width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* ── Header Controls Container ── */
+.headerControls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* ── 30s Autonomous Simulator Cycle Indicator ── */
+.cycleIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #10b981;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cycleDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+  flex-shrink: 0;
+}
+
+.cycleText {
+  display: inline;
+}
+
+@media (max-width: 768px) {
+  .inner {
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  .headerControls {
+    gap: 6px;
+  }
+
+  .superAdminSwitcher {
+    max-width: 120px;
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+
+  .orgSelect {
+    max-width: 85px;
+    font-size: 11px;
+  }
+
+  .simulatedDatePill {
+    padding: 3px 7px;
+    font-size: 11px;
+  }
+
+  .cycleIndicator {
+    padding: 4px 7px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 580px) {
+  .cycleText {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .inner {
+    padding: 0 8px;
+    gap: 6px;
+  }
+
+  .superAdminSwitcher {
+    max-width: 85px;
+    padding: 2px 4px;
+    gap: 3px;
+  }
+
+  .orgSelect {
+    max-width: 60px;
+    font-size: 10px;
+  }
+
+  .simulatedDatePill {
+    padding: 3px 5px;
+    font-size: 10px;
+  }
+
+  .simulatedDatePill span {
+    max-width: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .dropdownMenu {
+    width: min(250px, calc(100vw - 16px));
+    right: 0;
+  }
+}
+
