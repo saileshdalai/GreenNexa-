@@ -81,3 +81,6 @@ frontend/build/
 
 # Database backup files
 *.db.bak
+
+# PostgreSQL dump files
+*.dump
