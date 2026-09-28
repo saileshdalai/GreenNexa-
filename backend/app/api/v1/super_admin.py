@@ -2118,8 +2118,11 @@ def get_platform_storage_overview(
         total_logical_bytes=total_logical_bytes,
         total_logical_formatted=format_storage_bytes(total_logical_bytes),
         organisations=org_items,
-        generated_at=datetime.now(timezone.utc).isoformat(),
-        database_path=db_path or f"postgresql://localhost:5432/{db_database.engine.url.database}",
+        database_path=db_path or (
+            f"postgresql://{db_database.engine.url.host or 'localhost'}:{db_database.engine.url.port or 5432}/{db_database.engine.url.database or ''}"
+            if not str(db_database.engine.url).startswith("sqlite")
+            else "sqlite"
+        ),
         database_engine="PostgreSQL" if not str(db_database.engine.url).startswith("sqlite") else "SQLite",
     )
 

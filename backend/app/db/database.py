@@ -30,7 +30,9 @@ try:
 except ImportError:
     pass
 
-_raw_url = os.environ.get("DATABASE_URL", "")
+_raw_url = os.environ.get("DATABASE_URL", "").strip()
+if _raw_url.startswith("postgres://"):
+    _raw_url = _raw_url.replace("postgres://", "postgresql://", 1)
 
 # Fall back to SQLite for local development/testing
 if not _raw_url:

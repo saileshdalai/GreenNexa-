@@ -1,6 +1,30 @@
 // GreenNexa API Client
+// Priority: NEXT_PUBLIC_API_URL env var -> Production deployed fallback -> Localhost development fallback
+function resolveApiBaseUrl(): string {
+  const envUrl = process.env.NEXT_PUBLIC_API_URL?.trim();
+  if (envUrl) {
+    // Normalize trailing slash and remove accidental trailing /api/v1 (endpoints prefix /api/v1)
+    return envUrl.replace(/\/+$/, "").replace(/\/api\/v1$/, "");
+  }
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8001";
+  // Production safeguard: Deployed frontend must never attempt loopback (localhost / 127.0.0.1)
+  const isBrowser = typeof window !== "undefined";
+  const isLocalHost =
+    isBrowser &&
+    (window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1" ||
+      window.location.hostname === "[::1]");
+
+  if (process.env.NODE_ENV === "production" || (isBrowser && !isLocalHost)) {
+    return "https://greennexa-3k2u.onrender.com";
+  }
+
+  // Local development fallback
+  return "http://127.0.0.1:8001";
+}
+
+export const API_BASE_URL = resolveApiBaseUrl();
+const BASE_URL = API_BASE_URL;
 
 export class ApiError extends Error {
   status: number;
@@ -37,8 +61,8 @@ async function handleResponse<T>(res: Response): Promise<T> {
       typeof errData?.detail === "string"
         ? errData.detail
         : Array.isArray(errData?.detail)
-        ? errData.detail.map((e: any) => e.msg).join(", ")
-        : `Request failed with status ${res.status}`;
+          ? errData.detail.map((e: any) => e.msg).join(", ")
+          : `Request failed with status ${res.status}`;
 
     if (res.status === 401 && typeof window !== "undefined") {
       // Clear token on 401
@@ -150,7 +174,7 @@ export const api = {
       try {
         const errJson = await res.json();
         errText = errJson.detail || errText;
-      } catch {}
+      } catch { }
       throw new ApiError(res.status, errText);
     }
 

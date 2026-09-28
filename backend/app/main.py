@@ -60,23 +60,51 @@ app = FastAPI(
 )
 
 # ---------------------------------------------------------------------------
-# CORS — restrict in production
+# CORS — configurable via CORS_ORIGINS environment variable
 # ---------------------------------------------------------------------------
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "http://localhost:3001",
-        "http://127.0.0.1:3001",
-        "http://[::1]:3000",
-        "http://[::1]:3001",
-    ],
-    allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$",
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+default_origins = [
+    "https://green-nexa.vercel.app",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:3001",
+    "http://127.0.0.1:3001",
+    "http://[::1]:3000",
+    "http://[::1]:3001",
+]
+
+env_cors = os.environ.get("CORS_ORIGINS", "").strip()
+if env_cors:
+    if env_cors == "*":
+        app.add_middleware(
+            CORSMiddleware,
+            allow_origin_regex=r".*",
+            allow_credentials=True,
+            allow_methods=["*"],
+            allow_headers=["*"],
+        )
+    else:
+        custom_origins = [o.strip() for o in env_cors.split(",") if o.strip()]
+        origins = list(dict.fromkeys(default_origins + custom_origins))
+        app.add_middleware(
+            CORSMiddleware,
+            allow_origins=origins,
+            allow_origin_regex=os.environ.get(
+                "CORS_ORIGIN_REGEX",
+                r"^https?://(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$",
+            ),
+            allow_credentials=True,
+            allow_methods=["*"],
+            allow_headers=["*"],
+        )
+else:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=default_origins,
+        allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$",
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
 # ---------------------------------------------------------------------------
 # Create tables on startup (safe for SQLite and PostgreSQL)
@@ -165,3 +193,10 @@ def root():
         "docs": "/docs",
         "health": "/health",
     }
+
+
+if __name__ == "__main__":
+    import uvicorn
+    server_port = int(os.environ.get("PORT", 8001))
+    uvicorn.run("app.main:app", host="0.0.0.0", port=server_port, reload=False)
+

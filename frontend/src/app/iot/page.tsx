@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import AppLayout from "@/components/layout/AppLayout";
 import { useAuth } from "@/context/AuthContext";
-import { api } from "@/lib/api";
+import { api, API_BASE_URL } from "@/lib/api";
 import { IoTDevice } from "@/types";
 import { Badge } from "@/components/ui/Badge";
 import { Skeleton } from "@/components/ui/Skeleton";
@@ -247,14 +247,14 @@ export default function IoTPage() {
 
             <ol style={{ fontSize: "0.85rem", color: "#cbd5e1", lineHeight: 1.7, paddingLeft: "20px", marginBottom: "20px" }}>
               <li>Configure Wi-Fi connection (for Wokwi use SSID <code>Wokwi-GUEST</code>).</li>
-              <li>Set target endpoint to <code>http://YOUR_SERVER_HOST:8001/api/v1/iot/sensor-data</code>.</li>
+              <li>Set target endpoint to <code>{API_BASE_URL}/api/v1/iot/sensor-data</code>.</li>
               <li>Add HTTP headers <code>X-Device-ID: DEVICE_ID</code> and <code>X-API-Key: API_KEY</code>.</li>
             </ol>
 
             <h3 style={{ fontSize: "1rem", color: "#38bdf8", marginBottom: "8px" }}>C++ / Arduino Snippet</h3>
             <pre style={{ background: "#0f172a", color: "#f8fafc", padding: "12px", borderRadius: "6px", fontSize: "0.8rem", overflowX: "auto" }}>
 {`HTTPClient http;
-http.begin("http://127.0.0.1:8001/api/v1/iot/sensor-data");
+http.begin("${API_BASE_URL}/api/v1/iot/sensor-data");
 http.addHeader("Content-Type", "application/json");
 http.addHeader("X-Device-ID", "DEVICE_ID");
 http.addHeader("X-API-Key", "API_KEY");

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'GreenNexa' }],
   creator: 'GreenNexa',
-  metadataBase: new URL('https://greennexa.app'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://green-nexa.vercel.app'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
